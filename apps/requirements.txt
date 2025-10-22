@@ -1,0 +1,14 @@
+pandas
+numpy
+scikit-learn
+joblib
+flask
+mlflow
+boto3
+apache-airflow==2.6.3
+gunicorn
+python-dotenv
+matplotlib
+seaborn
+pytest
+flake8
