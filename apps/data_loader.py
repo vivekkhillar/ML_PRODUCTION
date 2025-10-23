@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import os
 
-def data_load(path: str = "../data/customer_churn.csv") -> pd.DataFrame:
+def data_load(path: str = f"{os.path.dirname(__file__)}/../data/customer_churn.csv") -> pd.DataFrame:
+
     """
     Load customer data from a CSV file.
 
@@ -12,12 +13,13 @@ def data_load(path: str = "../data/customer_churn.csv") -> pd.DataFrame:
     Returns:
     pd.DataFrame: A DataFrame containing the customer data.
     """
+    
     if not os.path.exists(path):
         raise FileNotFoundError(f"{path} not found")
     
     data = pd.read_csv(path)
-    print(data.head())
     return data
 
 if __name__ == "__main__":
-    data_load()
+    data = data_load()
+    print(data)
