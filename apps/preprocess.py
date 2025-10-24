@@ -6,6 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 from matplotlib import pyplot as plt
 
 def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
+    
     df = data.copy()
 
     # Convert 'TotalCharges' to numeric, coerce errors to NaN, then fill NaN with 0
