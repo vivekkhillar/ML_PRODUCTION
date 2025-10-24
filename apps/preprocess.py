@@ -11,7 +11,7 @@ def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
     # Convert 'TotalCharges' to numeric, coerce errors to NaN, then fill NaN with 0
     df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce').fillna(0)
     
-    # convert the yes or no values to 0 and 1
+    # convert the yes or no values to 0 and 1 by map
 
     for col in ['Partner','Dependents','PhoneService','PaperlessBilling','Churn']:
         df[col] = df[col].map({'yes': 1, 'no' : 0, 'Yes': 1, 'No' : 0})
