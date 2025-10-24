@@ -12,8 +12,7 @@ def data_load(path: str = f"{os.path.dirname(__file__)}/../data/customer_churn.c
 
     Returns:
     pd.DataFrame: A DataFrame containing the customer data.
-    """
-    
+    """    
     if not os.path.exists(path):
         raise FileNotFoundError(f"{path} not found")
     
