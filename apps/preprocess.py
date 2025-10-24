@@ -7,6 +7,7 @@ from matplotlib import pyplot as plt
 
 def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
     
+    # creat a copy of the data
     df = data.copy()
 
     # Convert 'TotalCharges' to numeric, coerce errors to NaN, then fill NaN with 0
