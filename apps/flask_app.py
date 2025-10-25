@@ -6,10 +6,8 @@ import os
 app = flask(__name__)
 MODEL_DIR = "../model/model.pkl"
 
-
 if not os.path.exist(MODEL_PATH) :
     raise FileNotFoundError("Model not found. Please run train.py first")
-
 
 model = joblib.load(MODEL_PATH)
 
