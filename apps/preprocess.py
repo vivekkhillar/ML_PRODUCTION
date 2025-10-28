@@ -15,12 +15,12 @@ def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
     
     # convert the yes or no values to 0 and 1 by map
 
-    for col in ['Partner','Dependents','PhoneService','PaperlessBilling','Churn']:
-        df[col] = df[col].map({'yes': 1, 'no' : 0, 'Yes': 1, 'No' : 0})
+    # for col in ['Partner','Dependents','PhoneService','PaperlessBilling','Churn']:
+    #     df[col] = df[col].map({'yes': 1, 'no' : 0, 'Yes': 1, 'No' : 0})
 
     # encode the Gender column to 0 and 1 by map
 
-    df['gender'] = df['gender'].map({'Female':0,'Male': 1})
+    # df['gender'] = df['gender'].map({'Female':0,'Male': 1})
 
     # convert tenure to the labels
 
