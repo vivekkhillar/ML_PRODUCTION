@@ -1,0 +1,8 @@
+airflow/logs/
+airflow/db/
+airflow/*.db
+__pycache__/
+*.pyc
+.env
+.vscode/
+.git/

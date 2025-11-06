@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    restart: always
+
+  airflow-init:
+    image: apache/airflow:2.8.0
+    depends_on:
+      - postgres
+    entrypoint: /bin/bash
+    command: -c "airflow db init && airflow users create \
+      --username admin --password admin \
+      --firstname Vivek --lastname Khillar \
+      --role Admin --email admin@example.com"
+    environment:
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+    restart: "no"
+
+  airflow-webserver:
+    image: apache/airflow:2.8.0
+    depends_on:
+      - airflow-init
+    ports:
+      - "8080:8080"
+    command: webserver
+    environment:
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+    restart: always
+
+  airflow-scheduler:
+    image: apache/airflow:2.8.0
+    depends_on:
+      - airflow-init
+    command: scheduler
+    environment:
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+    restart: always
+
+volumes:
+  postgres-db-volume:
