@@ -5,7 +5,7 @@ joblib
 flask
 mlflow
 boto3
-apache-airflow==2.6.3
+apache-airflow==2.8.0
 gunicorn
 python-dotenv
 matplotlib
