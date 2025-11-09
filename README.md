@@ -24,3 +24,4 @@ docker build -t churn-app -f docker/Dockerfile .
 
 # Run Docker container
 docker run -p 5000:5000 churn-app
+
