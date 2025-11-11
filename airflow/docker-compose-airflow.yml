@@ -23,6 +23,9 @@ services:
     volumes:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
+      - ../data:/opt/airflow/data
+      - ../apps:/opt/airflow/apps
+      - ../model:/opt/airflow/model
     restart: "no"
 
   airflow-webserver:
@@ -37,6 +40,9 @@ services:
     volumes:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
+      - ../data:/opt/airflow/data
+      - ../apps:/opt/airflow/apps
+      - ../model:/opt/airflow/model
     restart: always
 
   airflow-scheduler:
@@ -49,6 +55,9 @@ services:
     volumes:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
+      - ../data:/opt/airflow/data
+      - ../apps:/opt/airflow/apps
+      - ../model:/opt/airflow/model
     restart: always
 
 volumes:

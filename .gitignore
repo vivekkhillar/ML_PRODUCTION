@@ -1,0 +1,18 @@
+# Ignore Airflow logs
+airflow/logs/
+*.log
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment folders
+env/
+venv/
+
+# Model artifacts
+models/
+*.pkl
+
+# DS/Temp junk
+.DS_Store

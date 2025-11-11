@@ -3,6 +3,7 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 import pandas as pd
 import subprocess
+import os
 
 DEFAULT_ARGS = {
     "owner": "airflow",
@@ -11,18 +12,18 @@ DEFAULT_ARGS = {
 }
 
 DATA_PATH = "/opt/airflow/data/customer_churn.csv"
-TRAIN_SCRIPT = "/opt/airflow/app/train.py"  #  Updated path
+TRAIN_SCRIPT = "/opt/airflow/apps/train.py"
 
-# Task 1: Load Data
 def load_data():
+    print("📌 Checking file path:", DATA_PATH)
     df = pd.read_csv(DATA_PATH)
-    print(f"Data loaded successfully: {df.shape}")
+    print(f"✅ Data loaded successfully with shape: {df.shape}")
 
-# Task 2: Train Model using your same script
 def train_model():
-    print("Training model...")
-    subprocess.run(["python", TRAIN_SCRIPT], check=True)
-    print(" Model training complete!")
+    print("🚀 Training model started...")
+    result = subprocess.run(["python", TRAIN_SCRIPT], capture_output=True, text=True)
+    print(result.stdout)
+    print("✅ Training complete!")
 
 with DAG(
     dag_id="churn_data_pipeline",
@@ -42,5 +43,4 @@ with DAG(
         python_callable=train_model,
     )
 
-    #   Pipeline flow
     load_task >> train_task
